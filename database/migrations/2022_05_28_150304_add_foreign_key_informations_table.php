@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeyClientTable extends Migration
+class AddForeignKeyInformationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignKeyClientTable extends Migration
      */
     public function up()
     {
-        Schema::table('Clients', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('iban')->nullable();
+        Schema::table('informations', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->after('deadline')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
@@ -26,8 +26,8 @@ class AddForeignKeyClientTable extends Migration
      */
     public function down()
     {
-        Schema::table('Clients', function (Blueprint $table) {
-            $table->dropForeign('clients_user_id_foreign');
+        Schema::table('informations', function (Blueprint $table) {
+            $table->dropForeign('informations_user_id_foreign');
             $table->dropColumn('user_id');
         });
     }
