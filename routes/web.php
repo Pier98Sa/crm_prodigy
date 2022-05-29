@@ -25,6 +25,10 @@ Route::middleware('auth')
     ->group(function (){
     //admin
     Route::get('/', 'HomeController@index')->name('home');
+    //profile edit
+    Route::get('user', 'UserController@edit')->name('user.edit');
+    //profile update
+    Route::put('user', 'UserController@update')->name('user.update');
 });
 
 //rotta catch all
