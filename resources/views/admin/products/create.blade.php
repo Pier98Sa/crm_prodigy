@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Product Descriptionn <strong>*</strong>
+                        <label for="description">Product Description <strong>*</strong>
                             <small class="d-block">Write at least 10 characters</small>
                         </label>
                         <textarea  class="form-control" name="description" id="description" cols="30" rows="10" required>{{old('description')}}</textarea>

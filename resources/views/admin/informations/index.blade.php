@@ -6,7 +6,14 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <a href="{{route('admin.informations.create')}}" class="btn btn-primary mb-2">New informations</a>
+            @foreach ($clients as $client )
+                <h1>Information of {{$client->business_name}}</h1>
+                <a href="{{route('admin.clients.show', $client->id)}}" class="btn btn-primary mb-2">Go Back</a>
+            @endforeach
+
+                <a href="{{route('admin.informations.create')}}" class="btn btn-primary mb-2">New informations</a>
+             
+
             <table class="table">
                 <thead>
                     <tr>
@@ -14,13 +21,13 @@
                         <th scope="col text-uppercase">Comment</th>
                         <th scope="col text-uppercase">Deadline</th>
                         <th scope="col text-uppercase">Type</th>
-                        <th scope="col text-uppercase">Created by</th>
-                        <th scope="col text-uppercase">Client</th>
+                        <th scope="col text-uppercase">Last edited by</th>
                         <th scope="col text-uppercase">Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
+                    
                     @foreach ($informations as $information )
                         <tr>
                             
@@ -29,7 +36,6 @@
                             <td>{{$information->deadline}}</td>
                             <td>{{$information->typology->name}}</td>
                             <td>{{$information->user->name}}</td>
-                            <td>{{$information->client->business_name}}</td>
                             <td class="d-flex">
                                 <a href="{{route('admin.informations.show', $information->id)}}" class="btn btn-primary">More</a>
                                 <a href="{{route('admin.informations.edit', $information->id)}}" class="btn btn-warning mx-2">Edit</a>
