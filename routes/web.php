@@ -31,6 +31,8 @@ Route::middleware('auth')
     Route::put('user', 'UserController@update')->name('user.update');
     //products route
     Route::resource('products',  'ProductController');
+    //clients route
+    Route::resource('clients',  'ClientController');
 });
 
 //rotta catch all

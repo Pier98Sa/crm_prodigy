@@ -37,6 +37,10 @@
                             <a class="nav-link" href="{{route('admin.products.index')}}">Products</a>
                         </li>
 
+                        <li>
+                            <a class="nav-link" href="{{route('admin.clients.index')}}">Clients</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

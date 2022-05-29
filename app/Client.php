@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    protected $fillable =['image','business_name','address','city','postal_code','email','phone_number','vat_number','iban'];
+    protected $fillable =['image','business_name','address','city','postal_code','email','phone_number','vat_number','iban','user_id'];
 
     public function user(){
         return $this->belongsTo('App\User');
