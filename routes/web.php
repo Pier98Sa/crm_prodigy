@@ -33,6 +33,8 @@ Route::middleware('auth')
     Route::resource('products',  'ProductController');
     //clients route
     Route::resource('clients',  'ClientController');
+    //informations route
+    Route::resource('informations',  'InformationController');
 });
 
 //rotta catch all

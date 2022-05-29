@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center">client detail: {{$client->business_name}}</h1>
+                <h1 class="text-center">Client detail: {{$client->business_name}}</h1>
 
                 <div class="card">
                     @if (isset($client->image))
@@ -36,5 +36,7 @@
         </div>
 
         <a href="{{route('admin.clients.index')}}" class="btn btn-primary mt-2">Go Back</a>
+        <a href="{{route('admin.informations.index', ['id'=> $client->id]) }}" class="btn btn-warning mt-2">CRM</a>
+
     </div>
 @endsection

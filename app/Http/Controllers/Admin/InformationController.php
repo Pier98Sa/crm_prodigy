@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Information;
 use Illuminate\Http\Request;
 
 class InformationController extends Controller
@@ -12,9 +13,12 @@ class InformationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $client = $request->id;
+        $informations = Information::where('client_id',$client)->get();
+        
+        return view('admin.informations.index', compact('informations'));
     }
 
     /**

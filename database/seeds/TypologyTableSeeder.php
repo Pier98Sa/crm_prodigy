@@ -13,7 +13,7 @@ class TypologyTableSeeder extends Seeder
      */
     public function run()
     {
-        $typologies = ['Attività','Telefonata','Appuntamento','Commento'];
+        $typologies = ['Asset','Call','Meeting','Comment'];
 
         foreach($typologies as $typology){
             $newtypology = new Typology();
