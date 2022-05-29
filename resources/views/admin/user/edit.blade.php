@@ -89,12 +89,12 @@
                                 <h3>ChangePassword</h3>
                                 <div class="form-group">
                                     <label for="new_password">Password (leave the field empty if you don't want to update)</label>
-                                    <input type="password" class="form-control" id="new_password" name="new_password">
+                                    <input type="password" class="form-control" id="new_password" name="new_password" onchange="onEditPass()">
                                 </div>
         
                                 <div class="form-group">
                                     <label for="new_password_confirmation">Confirm Password</label>
-                                    <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation">
+                                    <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" onchange="onEditPass()">
                                 </div>
                             </div>
                         </div>

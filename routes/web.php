@@ -29,6 +29,8 @@ Route::middleware('auth')
     Route::get('user', 'UserController@edit')->name('user.edit');
     //profile update
     Route::put('user', 'UserController@update')->name('user.update');
+    //products route
+    Route::resource('products',  'ProductController');
 });
 
 //rotta catch all

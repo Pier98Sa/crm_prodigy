@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Information extends Model
 {
-    protected $fillable =['title','cooment','deadline'];
+    protected $fillable =['title','comment','deadline'];
 
     public function user(){
         return $this->belongsTo('App\User');

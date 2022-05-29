@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -14,7 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -24,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -35,7 +40,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $request->validate(
+            [
+                'name' => 'required|min:2',
+                'description' => 'required|min:10',
+                'price' => 'required|numeric|min:1',
+                'image' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp|max:2048'
+            ]
+        );
+
+        //acquisizione dei dati
+        $data = $request->all();
+
+        if(isset($data['image'])){
+            $img_product = Storage::put('img_products', $data['image']);
+            $data['image'] = $img_product;
+        }
+
+        $product = new Product();
+        $product->fill($data);
+        $product->save();
+
+        return redirect()->route('admin.products.index')->with('message', 'Product correctly added');
     }
 
     /**
@@ -44,9 +71,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -55,9 +82,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
@@ -67,9 +94,30 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        //validation
+        $request->validate(
+            [
+                'name' => 'required|min:2',
+                'description' => 'required|min:10',
+                'price' => 'required|numeric|min:1',
+                'image' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp|max:2048'
+            ]
+        );
+
+        //acquisizione dei dati
+        $data = $request->all();
+
+        if(isset($data['image'])){
+            $img_product = Storage::put('img_products', $data['image']);
+            $data['image'] = $img_product;
+        }
+
+        $product->update($data);
+        $product->save();
+
+        return redirect()->route('admin.products.show', ['product' => $product->id])->with('message', 'Product correctly edited');
     }
 
     /**
@@ -78,8 +126,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
+        $product->delete();
+        return redirect()->route('admin.products.index')->with('message', 'Product correctly deleted');
     }
 }
