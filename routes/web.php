@@ -35,6 +35,9 @@ Route::middleware('auth')
     Route::resource('clients',  'ClientController');
     //informations route
     Route::resource('informations',  'InformationController');
+    //quotes route
+    Route::resource('quotes',  'QuoteController');
+
 });
 
 //rotta catch all

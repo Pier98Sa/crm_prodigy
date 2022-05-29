@@ -18,8 +18,8 @@
                     @endif
                     <div class="card-body">
                         <h2 class="card-title">{{$product->name}}</h2>
-                        <p class="card-text"> <strong>Descrizione:</strong>  {{$product->description}}</p>
-                        <span><strong>Prezzo:</strong> {{$product->price}} &euro;</span>
+                        <p class="card-text"> <strong>Description:</strong>  {{$product->description}}</p>
+                        <span><strong>Price:</strong> {{$product->price}} &euro;</span>
                     </div>
  
                    

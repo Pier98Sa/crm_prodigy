@@ -41,6 +41,10 @@
                             <a class="nav-link" href="{{route('admin.clients.index')}}">Clients</a>
                         </li>
 
+                        <li>
+                            <a class="nav-link" href="{{route('admin.quotes.index')}}">Quotes</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -35,8 +35,10 @@
            
         </div>
 
-        <a href="{{route('admin.clients.index')}}" class="btn btn-primary mt-2">Go Back</a>
+        <a href="{{ url()->previous() }}" class="btn btn-primary mt-2">Go Back</a>
         <a href="{{route('admin.informations.index', ['id'=> $client->id]) }}" class="btn btn-warning mt-2">CRM</a>
+        <a href="{{route('admin.quotes.create', ['id'=> $client->id]) }}" class="btn btn-danger mt-2">New Quote</a>
+        <a href="{{route('admin.quotes.index', ['id'=> $client->id]) }}" class="btn btn-info mt-2">See All His Quotes</a>
 
     </div>
 @endsection
