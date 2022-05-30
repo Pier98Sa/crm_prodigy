@@ -66,6 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //se settata salvo la path dell'immagine
         if(isset($data['avatar'])){
             $img_users = Storage::put('img_users', $data['avatar']);
             $data['avatar'] = $img_users;
