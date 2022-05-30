@@ -14,7 +14,7 @@ class InformationTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 200; $i++) { 
             $newInformation = new Information();
             $newInformation->title = $faker->words(3, true);
             $newInformation->comment = $faker->sentence();
