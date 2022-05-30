@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12">
             <a href="{{route('admin.products.create')}}" class="btn btn-primary mb-2">New Products</a>
-            <a {{-- href="http://127.0.0.1:8000/research/{{$user->slug}}" --}}   class="btn btn-primary mb-2" >View Products on site</a>
+            <a href="http://127.0.0.1:8000/products"  class="btn btn-primary mb-2" >View Products on site</a>
             <table class="table">
                 <thead>
                     <tr>
