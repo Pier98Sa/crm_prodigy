@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Lead;
+use App\Mail\CustomerMail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LeadController extends Controller
 {
@@ -41,6 +43,14 @@ class LeadController extends Controller
             $lead->fill($data);
 
             $lead->save();
+
+            //mando una mail di conferma  al cliente
+            Mail::to($data["email"])->send(new CustomerMail($lead));
+
+            return response()->json([
+                'success' => true
+            ]);
+
         }
     }
 
