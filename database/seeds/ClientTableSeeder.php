@@ -24,7 +24,7 @@ class ClientTableSeeder extends Seeder
             $newClient->phone_number = $faker->numerify('##########');
             $newClient->vat_number = $faker->numerify('###########');
             $newClient->iban = $faker->numerify('IT#########################');
-            $newClient->user_id = $faker->numberBetween(1, 10);;
+            $newClient->user_id = $faker->numberBetween(1, 10);
             $newClient->save();
 
         }

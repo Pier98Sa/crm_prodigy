@@ -5,6 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <p >To make a new quote please go to the client profile</p>
         <div class="col-12">
 
             <table class="table">
