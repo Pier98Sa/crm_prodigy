@@ -37,6 +37,8 @@ Route::middleware('auth')
     Route::resource('informations',  'InformationController');
     //quotes route
     Route::resource('quotes',  'QuoteController');
+    //leads route
+    Route::resource('leads','LeadController');
 
 });
 

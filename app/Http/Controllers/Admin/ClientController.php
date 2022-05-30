@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Client;
 use App\Http\Controllers\Controller;
+use App\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -26,9 +27,16 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.clients.create');
+        $lead_id = $request->id;
+        if($lead_id == null){
+            return view('admin.clients.create');
+        }else{
+            $lead_coll = Lead::where('id',$lead_id)->get();
+            $lead = $lead_coll[0];
+            return view('admin.clients.create', compact('lead'));
+        }
     }
 
     /**

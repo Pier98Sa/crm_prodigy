@@ -1,14 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('pageTitle','Add New Clients')
-
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-12">
             <h1>Add a new client</h1>
             <span>Marked fields(*) are required</span>
-
+            
             <form method="POST" action="{{route('admin.clients.store')}}" enctype="multipart/form-data" class="mt-2">
                 @csrf
                     <div class="form-group">
@@ -18,7 +17,7 @@
 
                     <div class="form-group">
                         <label for="business_name">Business Name <strong>*</strong></label>
-                        <input type="text" class="form-control" id="business_name" name="business_name" value="{{old('business_name')}}" required>
+                        <input type="text" class="form-control" id="business_name" name="business_name" value="{{old('business_name', (isset($lead))?  $lead->name : '')}}" required>
                     </div>
 
                     <div class="form-group">
@@ -38,12 +37,12 @@
 
                     <div class="form-group">
                         <label for="email">Email <strong>*</strong></label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{old('email')}}" required>
+                        <input type="email" class="form-control" id="email" name="email" value="{{old('email', (isset($lead))? $lead->email : '')}}" required>
                     </div>
 
                     <div class="form-group">
                         <label for="phone_number">Phone Number <strong>*</strong></label>
-                        <input type="number" class="form-control" id="phone_number" name="phone_number" value="{{old('phone_number')}}" required pattern="[0-9]+" minlength="9" maxlength="15">
+                        <input type="number" class="form-control" id="phone_number" name="phone_number" value="{{old('phone_number', (isset($lead))? $lead->phone_number : '')}}" required pattern="[0-9]+" minlength="9" maxlength="15">
                     </div>
 
                     <div class="form-group">

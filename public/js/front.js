@@ -1967,6 +1967,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Header'
 });
@@ -3706,6 +3708,12 @@ var render = function () {
               1
             ),
           ]),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "btn btn-primary", attrs: { href: "/admin" } },
+            [_vm._v("Private Area")]
+          ),
         ]),
       ]
     ),

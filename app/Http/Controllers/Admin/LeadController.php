@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Lead;
 use Illuminate\Http\Request;
 
 class LeadController extends Controller
@@ -14,29 +15,11 @@ class LeadController extends Controller
      */
     public function index()
     {
-        //
+        $leads = Lead::all();
+
+        return view('admin.leads.index', compact('leads'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -44,9 +27,9 @@ class LeadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Lead $lead)
     {
-        //
+        return view('admin.leads.show', compact('lead'));
     }
 
     /**
@@ -78,8 +61,9 @@ class LeadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Lead $lead)
     {
-        //
+        $lead->delete();
+        return redirect()->route('admin.leads.index')->with('message', 'Lead corretly deleted');
     }
 }
