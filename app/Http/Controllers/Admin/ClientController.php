@@ -29,10 +29,11 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
+        
         $lead_id = $request->id;
         if($lead_id == null){
             return view('admin.clients.create');
-        }else{
+        }else{//se creo un nuovo client da un lead passo lead così da pre-compilare dei campi
             $lead_coll = Lead::where('id',$lead_id)->get();
             $lead = $lead_coll[0];
             return view('admin.clients.create', compact('lead'));
@@ -47,7 +48,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //validazione
+        //validazione dei dati ingresso
         $request->validate(
             [
                 'image' => 'nullable|mimes:jpg,jpeg,png,bmp,gif,svg,webp|max:2048',
@@ -65,6 +66,7 @@ class ClientController extends Controller
         //acquisizione dei dati
         $data = $request->all();
 
+        //se l'immagine è settata inserisco nel db la path 
         if(isset($data['image'])){
             $img_clients = Storage::put('img_clients', $data['image']);
             $data['image'] = $img_clients;
@@ -128,6 +130,7 @@ class ClientController extends Controller
         //acquisizione dei dati
         $data = $request->all();
 
+        //se l'immagine è settata inserisco nel db la path 
         if(isset($data['image'])){
             $img_clients = Storage::put('img_clients', $data['image']);
             $data['image'] = $img_clients;
@@ -147,6 +150,7 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+        //se esiste un immagine la cancello dal db
         if ($client->image) {
             Storage::delete($client->image);
         }

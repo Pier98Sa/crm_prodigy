@@ -18,9 +18,11 @@ class InformationController extends Controller
      */
     public function index(Request $request)
     {
+        //recupero le information del singolo cliente
         $user = $request->id;
         $informations = Information::where('client_id',$user)->get();
         $clients = Client::where('id',$user)->get();
+        //salvo il l'id
         request()->session()->put('id_client',$user);
         
         return view('admin.informations.index', compact('informations','clients'));
@@ -60,7 +62,7 @@ class InformationController extends Controller
         $data = $request->all();
 
         $data['user_id'] = Auth::id();
-
+        //recupero l'id salvato
         $id = (request()->session()->get('id_client'));
         $data['client_id'] = $id;
 

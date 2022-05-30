@@ -53,6 +53,7 @@ class ProductController extends Controller
         //acquisizione dei dati
         $data = $request->all();
 
+        //se è settata l'immagine salvo la path
         if(isset($data['image'])){
             $img_product = Storage::put('img_products', $data['image']);
             $data['image'] = $img_product;
@@ -108,7 +109,7 @@ class ProductController extends Controller
 
         //acquisizione dei dati
         $data = $request->all();
-
+        //se è settata l'immagine salvo la path
         if(isset($data['image'])){
             $img_product = Storage::put('img_products', $data['image']);
             $data['image'] = $img_product;

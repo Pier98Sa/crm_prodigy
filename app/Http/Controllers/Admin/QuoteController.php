@@ -37,6 +37,7 @@ class QuoteController extends Controller
     public function create(Request $request)
     {
         $user = $request->id;
+        //salvo l'id
         request()->session()->put('client_quotes_id',$user);
         $products =  Product::all();
         $clients = Client::where('id',$user)->get();
@@ -65,6 +66,7 @@ class QuoteController extends Controller
         
         $totalPrice = null;
 
+        //calcolo il prezzo totale
         foreach ($products as $product) {
             $product_price = Product::where('id',$product)->get();
             foreach($product_price as $el){
@@ -73,7 +75,7 @@ class QuoteController extends Controller
                 $totalPrice += $el_price;
             }
         }
-
+        //recupero l'id salvato precedentemente
         $id = (request()->session()->get('client_quotes_id'));
         $quote = new Quote();
 
@@ -82,6 +84,7 @@ class QuoteController extends Controller
         $quote->client_id = $id;
         $quote->save();
 
+        //sincronizzo la tabella pivot
         $quote->products()->sync($data['products']);
 
         /* return redirect()->route('admin.informations.index',['id' => $id])->with('message', 'Information correctly added'); */
@@ -136,6 +139,7 @@ class QuoteController extends Controller
         
         $totalPrice = null;
 
+        //calcolo il prezzo totale
         foreach ($products as $product) {
             $product_price = Product::where('id',$product)->get();
             foreach($product_price as $el){
@@ -144,7 +148,7 @@ class QuoteController extends Controller
                 $totalPrice += $el_price;
             }
         }
-
+        //recupero l'id salvato precedentemente
         $id = (request()->session()->get('client_quotes_id'));
 
         $quote->comment = $data['comment'];
@@ -152,6 +156,7 @@ class QuoteController extends Controller
         $quote->client_id = $id;
         $quote->save();
 
+        //sincronizzo la tabella pivot
         $quote->products()->sync($data['products']);
 
         /* return redirect()->route('admin.informations.index',['id' => $id])->with('message', 'Information correctly added'); */
